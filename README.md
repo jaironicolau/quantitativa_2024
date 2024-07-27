@@ -1,4 +1,4 @@
-# Pesquisa Quantitativa: 2 semestre de 2014
+# Pesquisa Quantitativa: 2 semestre de 2024
 
 
 O objetivo da disciplina é discutir algumas noções básicas da pesquisa quantitativa. A expectativa é que ao fim do curso os estudantes estejam aptos para: organizar um banco de dados; ler tabelas e gráficos publicados em trabalhos acadêmicos; sumarizar dados por intermédio de tabelas e gráficos; e conhecer os fundamentos da estatísca multivariada. 
