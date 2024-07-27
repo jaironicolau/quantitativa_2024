@@ -73,7 +73,6 @@ Programa das aulas:
 | 26/nov 	| A2                                                             	|  -                                                                                                                    	|
 
 
-![image](https://github.com/user-attachments/assets/ce5ebf70-8293-459c-a54d-473b710f7d28)
 
 [Aula 1: apresentação](https://colab.research.google.com/drive/1p7FnhWbKcoOPg9CuZsww3IgQuoR5nOUP?usp=sharing).
 
