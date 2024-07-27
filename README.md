@@ -3,7 +3,7 @@
 
 O objetivo da disciplina é discutir algumas noções básicas da pesquisa quantitativa. A expectativa é que ao fim do curso os estudantes estejam aptos para: organizar um banco de dados; ler tabelas e gráficos publicados em trabalhos acadêmicos; sumarizar dados por intermédio de tabelas e gráficos; e conhecer os fundamentos da estatísca multivariada. 
 
-O curso utilizará algumas bibliotecas do Python, particularmente o Pandas, Numpy, Matplotlib e  Seaborn para aprender a manipular os dados e produzir gráficos de qualidade. A expectativa é que ao fim do curso os estudantes estejam aptos para: organizar um banco de dados; ler tabelas e gráficos publicados nos jornais e em trabalhos acadêmicos; sumarizar dados por intermédio de tabelas e gráficos; entender o sentido das expressões “correlação” e “regressão”; estar familiarizado com o COLAB, ambiente online onde serão realizadas nas atividades de análise de dados.
+ Para aprender a manipular os dados e produzir gráficos de qualidade utilizaremos o R, particularmente os pacotes abrigados no Tidyverse. A expectativa é que ao fim do curso os estudantes estejam aptos para: organizar um banco de dados; organizar o banco de dados para análise estatística; ler tabelas e gráficos publicados nos jornais e em trabalhos acadêmicos; produzir tabelas e  gráficos capazes de serem utilizadas na monografia e em apresentações; estar familiarizado com algumas ideias básicas do pensamento estatístico.
 
 O livro que será utilizado nas aulas:  "A Arte da Estatística", de David Spiegelhalter, Editora Zahar, 2019. No programa ele é apresentado pelas letras ADE 
 
