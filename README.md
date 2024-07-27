@@ -13,10 +13,11 @@ Programa das aulas:
 | Dia    	| Tema                                                           	| Bibliografia                                                                                                          	|
 |--------	|----------------------------------------------------------------	|-----------------------------------------------------------------------------------------------------------------------	|
 | 01/ago 	| apresentação                                                   	| -                                                                                                                     	|
-| 06/ago 	| ABCP- Não haverá aula                                          	| -                                                                                                                     	|
+| 06/ago 	| ABCP- Não haverá aula                                          	|Max Roser (2023) - “The limits of our personal experience and the value of statistics”                               	|
+|        	|                                                                	| https://ourworldindata.org/limits-personal-experie                                                                                                                    	|
 | 08/ago 	| ABCP- Não haverá aula                                          	| -                                                                                                                     	|
-| 13/ago 	| Por que pesquisa quantitativa?                                 	|  Max Roser (2023) - “The limits of our personal experience and the value of statistics”                               	|
-|        	|                                                                	| https://ourworldindata.org/limits-personal-experience                                                                 	|
+| 13/ago 	| Por que pesquisa quantitativa?  
+                                                             	|
 | 15/ago 	| Introdução ao Python e ao uso do Colab                         	| Laboratório                                                                                                           	|
 | 20/ago 	|  Por que pesquisa quantitativa?                                	| Nate Silver (2024) - "Your friends are not representative sample of public opinion"                                   	|
 |        	|                                                                	| https://www.natesilver.net/p/your-friends-are-not-a-representative                                                    	|
