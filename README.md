@@ -3,7 +3,7 @@
 
 O objetivo da disciplina é discutir algumas noções básicas da pesquisa quantitativa. A expectativa é que ao fim do curso os estudantes estejam aptos para: organizar um banco de dados; ler tabelas e gráficos publicados em trabalhos acadêmicos; sumarizar dados por intermédio de tabelas e gráficos; e conhecer os fundamentos da estatísca multivariada. 
 
- Para aprender a manipular os dados e produzir gráficos de qualidade utilizaremos o R, particularmente os pacotes abrigados no Tidyverse. A expectativa é que ao fim do curso os estudantes estejam aptos para: organizar um banco de dados; organizar o banco de dados para análise estatística; ler tabelas e gráficos publicados nos jornais e em trabalhos acadêmicos; produzir tabelas e  gráficos capazes de serem utilizadas na monografia e em apresentações; estar familiarizado com algumas ideias básicas do pensamento estatístico.
+ Para aprender a manipular os dados e produzir gráficos de qualidade utilizaremos o Python, particularmente os pacotes Pandas e Seaborn. A expectativa é que ao fim do curso os estudantes estejam aptos para: ler e manipular um banco de dados; organizar o banco de dados para análise estatística; ler tabelas e gráficos publicados nos jornais e em trabalhos acadêmicos; produzir tabelas e  gráficos capazes de serem utilizadas na monografia e em apresentações; estar familiarizado com algumas ideias básicas do pensamento estatístico.
 
 O livro que será utilizado nas aulas:  "A Arte da Estatística", de David Spiegelhalter, Editora Zahar, 2019. No programa ele é apresentado pelas letras ADE 
 
@@ -16,7 +16,7 @@ Programa das aulas:
 | 06/ago 	| ABCP- Não haverá aula                                                	|  Max Roser (2023) - “The limits of our personal experience and the value of statistics”  https://ourworldindata.org/limits-personal-experience         	|
 | 08/ago 	| ABCP- Não haverá aula                                                	| Nate Silver (2024) - "Your friends are not representative sample of public opinion" https://www.natesilver.net/p/your-friends-are-not-a-representative 	|
 | 13/ago 	| Por que pesquisa quantitativa?                                       	| ADE: Introdução                                                                                                                                        	|
-| 15/ago 	| revisando o básico: Rstudio, Rmarkdown e quarto                      	| Laboratório                                                                                                                                            	|
+| 15/ago 	| revisando o básico: Python, Jupyter e Colab                      	| Laboratório                                                                                                                                            	|
 | 20/ago 	| Colocando as coisas em proporção: dados classificatórios e proporção 	| ADE: Capitulo 1                                                                                                                                        	|
 | 22/ago 	| Carregar e inspecionar um banco de dados; tipos de variáveis         	| Laboratório                                                                                                                                            	|
 | 27/ago 	| Sintetizando  e comunicando números                                  	| ADE: Capitulo 2                                                                                                                                        	|
