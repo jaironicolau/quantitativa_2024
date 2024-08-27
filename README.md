@@ -5,7 +5,7 @@ O objetivo da disciplina é discutir algumas noções básicas da pesquisa quant
 
  Para aprender a manipular os dados e produzir gráficos de qualidade utilizaremos o Python, particularmente os pacotes Pandas e Seaborn. A expectativa é que ao fim do curso os estudantes estejam aptos para: ler e manipular um banco de dados; organizar o banco de dados para análise estatística; ler tabelas e gráficos publicados nos jornais e em trabalhos acadêmicos; produzir tabelas e  gráficos capazes de serem utilizadas na monografia e em apresentações; estar familiarizado com algumas ideias básicas do pensamento estatístico.
 
-O livro que será utilizado nas aulas:  "A Arte da Estatística", de David Spiegelhalter, Editora Zahar, 2019. No programa ele é apresentado pelas letras ADE 
+O livro que será utilizado nas aulas:  "Estatística: o que é e para que serve", de Charles Wheelam, Editora Zahar, 2021. No programa ele é apresentado pelas letras EST
 
 
 Programa das aulas: 
@@ -17,9 +17,9 @@ Programa das aulas:
 | 08/ago 	| ABCP- Não haverá aula                                                	| Nate Silver (2024) - "Your friends are not representative sample of public opinion" https://www.natesilver.net/p/your-friends-are-not-a-representative 	|
 | 13/ago 	| Por que pesquisa quantitativa?                                       	| ADE: Introdução                                                                                                                                        	|
 | 15/ago 	| revisando o básico: Rsudio e Posit Cloud                      	| Laboratório                                                                                                                                            	|
-| 20/ago 	| Colocando as coisas em proporção: dados classificatórios e proporção 	| ADE: Capitulo 1                                                                                                                                        	|
+| 20/ago 	| Colocando as coisas em proporção: dados classificatórios e proporção 	| -                                                                                                                                         	|
 | 22/ago 	| Manipulando dados com DPLYR         	| Laboratório                                                                                                                                            	|
-| 27/ago 	| Sintetizando  e comunicando números                                  	| ADE: Capitulo 2                                                                                                                                        	|
+| 27/ago 	| Sintetizando  e comunicando números                                  	| EST: Capitulo  1 e 2                                                                                                                                        	|
 | 29/ago 	| Manipulando dados com DPLYR s       	| Laboratório                                                                                                                                            	|
 | 03/set 	| Por que estudar os dados: população e medição                        	| ADE: Capitulo 3                                                                                                                                        	|
 | 05/set 	| Construir e ler tabelas de frequência                                	| Laboratório                                                                                                                                            	|
