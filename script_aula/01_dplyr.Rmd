@@ -1,0 +1,188 @@
+---
+title: "Dplyr"
+author: "Jairo Nicolau"
+date: "8/18/2020"
+output: html_document
+---
+
+### Carregando o banco
+
+dplyr
+
+
+```{r}
+library(tidyverse) 
+library(gapminder)
+```
+
+```{r}
+View(gapminder)
+```
+
+### Operador pipe
+
+CONTROL + SHIFT + M
+
+
+```{r}
+gapminder %>% glimpse 
+```
+
+### *Filter*  para filtrar linhas
+
+```{r}
+gapminder %>% 
+  filter (lifeExp > 35) 
+```
+
+```{r}
+gapminder %>% 
+  filter (country == "Argentina", year >= 1992)
+```
+
+```{r}
+gapminder %>% 
+  filter (country %in% c("Rwanda", "Afghanistan", "Brazil"))
+```
+
+### *Select* para selecionar colunas
+
+```{r}
+gapminder %>%
+  select(year, lifeExp, continent) 
+```
+
+
+```{r}
+gapminder %>%
+  filter(country == "Brazil") %>%
+  select(year, lifeExp) %>% 
+  top_n(10)
+  
+```
+
+
+### *Arrange* para ordenar por uma variável
+
+
+```{r}
+gapminder %>%
+  arrange(year, lifeExp)
+```
+
+
+
+```{r}
+gapminder  %>%
+  filter(year == 2007) %>%
+  arrange(desc(lifeExp)) %>% 
+  select(country, lifeExp) 
+
+```
+
+### *Rename* para renomear as variáveis
+
+```{r}
+gapminder %>%
+  rename(expectiva_vida = lifeExp,
+         gdp_percapita = gdpPercap,
+         continente = continent,
+         ano = year)
+```
+
+### *Mutate* para criar uma nova variável
+
+```{r}
+gapminder %>%
+  mutate(ano_x = "pesquisa1")  
+  
+```
+
+
+#### Contando as categorias 
+
+```{r}
+gapminder %>%
+  #filter(year == 2007, pop > 100000000) %>% 
+  count(continent)
+  
+```
+
+```{r}
+gapminder %>%
+  count(continent) %>% 
+  mutate(proporcao = n/(sum(n))) %>% # melhor para usar com ggplot
+  mutate(percentual = n/(sum(n))*100)
+  
+```
+
+
+### *Groupby* + *Summarize*
+
+Agregar por uma variavel categorica
+
+```{r}
+gapminder %>%
+  group_by(continent) %>%
+  summarize(casos = n()) 
+```
+
+```{r}
+gapminder %>%
+  group_by(continent) %>%
+  count() %>% 
+  ungroup() %>% 
+  mutate(prop = n/(sum(n))*100)
+```
+
+
+
+```{r}
+gapminder %>%
+  #filter(year== 2007) %>% 
+  group_by(continent) %>%
+  summarize(n = n(),
+            n_country = n_distinct(country))
+```
+
+#### Sumarização geral
+
+
+mean(), median(), var(), sd(), IQR(), min(), max()
+
+```{r}
+gapminder %>%
+  #filter(year==2007) %>% 
+  #group_by(continent) %>%
+  summarize(expectativa_maxima = max(lifeExp),
+            expectativa_minima = min(lifeExp),
+            expectativa_media = mean(gdpPercap)) 
+           #arrange(desc(max_lifeExp)) 
+
+```
+
+```{r}
+gapminder %>%
+  filter(year==2007) %>% 
+  group_by(continent) %>%
+  summarize(expec_maxima = max(gdpPercap),
+            expec_minima = min(gdpPercap),
+            expec_media = mean(gdpPercap)) %>% 
+            arrange(desc(expec_media)) 
+```
+
+
+
+```{r}
+gapminder %>%
+  filter(continent == "Americas") %>%
+  group_by(year) %>%
+  summarize(min_lifeExp = min(lifeExp), max_lifeExp = max(lifeExp)) 
+```
+
+
+
+
+
+
+

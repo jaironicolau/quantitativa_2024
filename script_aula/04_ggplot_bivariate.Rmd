@@ -1,0 +1,305 @@
+---
+title: "Gráficos para duas variáveis"
+author: "Jairo Nicolau"
+date: "04/10/2020"
+output: html_document
+---
+
+## 1. Gráficos para duas variáveis
+
+```{r }
+library(tidyverse)
+library(mosaicData)
+library(ggthemes)
+library (scales)
+```
+
+Vamos usar novamente o banco CPS85 do MosaicData
+
+### 1.1. Duas variáveis categóricas
+
+#### 1.1.1 Barras segmentadas (stack)
+
+```{r}
+ggplot(CPS85, 
+       aes(x = race, 
+           fill = sex)) + 
+  geom_bar(position = "stack") +
+  theme_bw()
+```
+
+
+```{r}
+ggplot(CPS85, 
+       aes(x = race, 
+           fill = sex)) +  
+geom_bar(aes( y = (..count..)/sum(..count..)), 
+          position = "stack") + 
+  scale_y_continuous(labels = percent_format()) +
+  theme_light() +
+  labs(title = "Brancos e não brancos segundo o sexo", 
+       x = "raça",
+       y = "percentual") + 
+  scale_fill_stata()
+```
+1.1.2 - Barras agrupadas (dodge)
+
+
+```{r}
+ggplot(CPS85, 
+       aes(x = race, 
+           fill = sex)) + 
+  geom_bar(position = "dodge")
+```
+```{r}
+ggplot(CPS85, 
+       aes(x = sector, 
+           fill = sex)) + 
+  geom_bar(aes( y = (..count..)/sum(..count..)), 
+          position = "dodge") + 
+  scale_y_continuous(labels = percent_format()) +
+  theme_minimal() +
+  labs(title = "", 
+       x = "raça",
+       y = "")
+```
+1.1.3 - Barras segmentadas com 100% em cada barra (fill)
+
+
+```{r}
+ggplot(CPS85, 
+       aes(x = sector, 
+           fill = sex)) + 
+  geom_bar(position = "fill") +
+  scale_y_continuous(breaks = seq(0.0, 1, 0.2)) 
+```
+
+### 1.2 - Duas variáveis quantitativas
+
+```{r}
+data(Salaries, package="carData")
+```
+
+##### 1.2.1 - Scatterplot (diagrama de dispersão)
+
+```{r}
+ggplot(Salaries, 
+       aes(x = yrs.since.phd, 
+           y = salary)) +
+  geom_point()
+```
+
+```{r}
+ggplot(Salaries, 
+       aes(x = yrs.since.phd, 
+           y = salary)) +
+  geom_point(color="cornflowerblue", 
+             size = 3, 
+             alpha=.7) +
+  theme_bw() +
+  scale_y_continuous(label = scales::dollar, 
+                     limits = c(50000, 250000)) +
+  scale_x_continuous(breaks = seq(0, 60, 10), 
+                     limits=c(0, 60)) + 
+  labs(x = "Anos desde o começo do Doutorado",
+       y = "",
+       title = "Experiência vs. Salário",
+       subtitle = "Salário para 2008-2009")
+```
+
+#### 1.2.2 - Gráfico linha
+
+```{r}
+data(gapminder, package="gapminder")
+
+# selecionando o Brasil
+gapminder %>% 
+  filter(country== "Brazil") %>% 
+ggplot( 
+       aes(x = year, 
+           y = lifeExp)) +
+  geom_line() 
+```
+
+```{r}
+
+gapminder %>% 
+  filter(country == "Brazil") %>% 
+ggplot(
+       aes(x = year, 
+           y = lifeExp)) +
+  geom_line(size = 1.5, 
+            color = "lightgrey") +
+  geom_point(size = 3, 
+             color = "steelblue") +
+  theme_minimal() +
+  labs(y = "Expectativa de vida em anos", 
+       x = "ano",
+       title = "Expectativa de vida ao longo do tempo",
+       subtitle = "Brasil (1952-2007)",
+       caption = "Fonte: http://www.gapminder.org/data/")
+```
+
+### 1.3 - Categórica e Quantitiva
+
+#### 1.3.1 - Barras:
+
+```{r}
+data(Salaries, package="carData") 
+
+media <- Salaries %>%
+  group_by(rank) %>%
+  summarize(media_salario = mean(salary))
+
+```
+
+
+```{r}
+
+ggplot(media, 
+       aes(x = rank, 
+           y = media_salario)) +
+  geom_bar(stat = "identity")
+```
+
+
+```{r}
+library(scales) 
+
+ggplot(media, 
+       aes(x = factor(rank,
+                      labels = c("Professor Asistente",
+                                 "Professor Associado",
+                                 "Full Professor")), 
+                      y = media_salario)) +
+  geom_bar(stat = "identity", 
+           fill = "cornflowerblue") +
+  geom_text(aes(label = dollar(media_salario)), vjust = -0.25) +
+  theme_minimal() +
+  scale_y_continuous(breaks = seq(0, 130000, 20000), 
+                     label = dollar) +
+  labs(title = "Media de salário por nível", 
+       subtitle = "Salário acadêmico de 2008-2009",
+       x = "",
+       y = "") 
+```
+#### 1.3.2 - Boxplot
+
+```{r}
+ggplot(Salaries, 
+       aes(x = rank, 
+           y = salary)) +
+  geom_boxplot() +
+  labs(title = "Salário por nível") 
+  
+```
+
+```{r}
+ggplot(Salaries, 
+       aes(x = rank, 
+           y = salary,
+           fill= rank)) +
+  geom_boxplot() +
+  labs(title = "Salário por nível",
+       y= "salário")
+```
+
+### 1.3.3 - Jitter plot 
+
+```{r}
+ggplot(Salaries, 
+       aes(x = rank, 
+           y = salary)) +
+  geom_jitter() + 
+  labs(title = "Salário por faixa") +
+  theme_bw()
+```
+
+
+```{r}
+ggplot(Salaries, 
+       aes(x = factor(rank,
+                      labels = c("Professor Assistente",
+                                 "Associado",
+                                 "Full")), 
+           y = salary, 
+           color = rank)) +
+  geom_jitter(alpha = 0.7,
+              size = 2.0) + 
+  scale_y_continuous(label = dollar) +
+  labs(title = "Salario por tipo de professor", 
+       subtitle = "Nove meses para 2008-2009",
+       x = "",
+       y = "") +
+  theme_economist_white() +
+  theme(legend.position = "none")
+```
+
+
+#### 1.3.4 - Boxpot e jitter plot
+
+
+```{r}
+library(scales) 
+
+ggplot(Salaries, 
+       aes(x = factor(rank, 
+                      labels = c("Professor\nAssistente",
+                                 "Professor\nAdjunto",
+                                 "Professor\nTitular")), 
+           y = salary, 
+           color = rank)) + 
+  geom_boxplot() + 
+  geom_jitter(alpha = 0.5, width=.2) + 
+  scale_y_continuous(label = dollar) + 
+  labs(title = "Salário  por segmento ", 
+       subtitle = "salario para 2008-2009",
+       x = "", 
+       y = "") + 
+  theme_minimal() + 
+  theme(legend.position = "none")  # para tirar a legenda
+  #coord_flip()
+
+#size=1, outlier.shape = 1, outlier.color = "black", outlier.size = 3 (reconfigurar estetica do boxplot)
+```
+## 2 - Gráficos multivariados
+
+
+#### usando duas variáveis quanti e uma variável categórica 
+
+```{r}
+ggplot(Salaries, 
+       aes(x = yrs.since.phd, 
+           y = salary, 
+           color = sex)) + 
+  #facet_wrap(~rank, ncol = 3) +
+  theme_bw() +
+  geom_point() 
+```
+
+#### usando "facetas"
+
+```{r}
+ggplot(Salaries, 
+       aes(x = salary)) +
+geom_histogram(fill = "cornflowerblue", color = "white") + 
+  facet_wrap(~rank, ncol = 1) + 
+  labs(title = "Salary histograms by rank") 
+```
+
+```{r}
+data(gapminder, package = "gapminder") 
+dplyr::filter(gapminder, continent == "Americas") %>% 
+  ggplot( aes(x=year, y = lifeExp)) + 
+  geom_line(color="grey") + 
+  geom_point(color="blue") + 
+  facet_wrap(~country) + 
+  theme_minimal(base_size = 9) + 
+  theme(axis.text.x = element_text(angle = 45)) + 
+  labs(title = "Changes in Life Expectancy", x = "Year", y = "Life Expectancy")
+```
+
+
+
+
+

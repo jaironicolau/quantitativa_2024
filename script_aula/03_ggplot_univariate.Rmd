@@ -1,0 +1,198 @@
+---
+title: "Gráficos para uma variável"
+author: "Jairo Nicolau"
+date: "9/8/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Uma variável
+
+## 1. Categórica
+
+### 1.1 Gráficos de barra
+
+O banco de dados contém a informação de 98 pessoas do candado de Mobile, no Alabama:
+
+```{r}
+library(tidyverse)
+library(mosaicData)
+library(ggthemes)
+```
+
+
+Um gráfico com a distribuição por raça
+
+```{r}
+
+ggplot(Marriage, 
+       aes(x= race)) +
+  geom_bar() 
+ 
+```
+O mesmo gráfico em percentual
+
+```{r}
+
+
+ggplot(Marriage,
+       aes(x = race,
+           y = ..count.. /sum(..count..))) + 
+  geom_bar()  +
+  labs(x = "Raça", 
+       y = "Percentual", 
+       title  = "Participantes segundo a raça") 
+
+#+scale_y_continuous(labels = scales::percent)
+  
+  
+```
+ Ordenando as  barras
+ 
+
+```{r}
+
+ggplot(Marriage,
+        aes(fct_infreq(race))) +
+  geom_bar() +
+  labs(x = "Raça", 
+       y = "Número de casos", 
+       title  = "Participante segundo a raça") 
+
+```
+### Renomeando as variáveis
+
+```{r}
+Marriage %>% 
+  count(race)
+```
+
+```{r}
+Marriage %>% 
+  mutate(race = fct_recode(race,
+    "Indigena"    = "American Indian",
+    "Preto"      = "Black",
+    "Hispânico" = "Hispanic",
+    "Branco" = "White"
+  )) %>%
+ggplot(aes(fct_infreq(race))) +
+  geom_bar() +
+  labs(x = "Raça", 
+       y = "Número de casos", 
+       title  = "Participante segundo a raça") 
+
+```
+
+Ordena no sentido contrário
+
+```{r}
+Marriage %>% 
+  mutate(raça= race %>% 
+        fct_infreq() %>% 
+           fct_rev()) %>%
+  ggplot(aes(raça)) +
+  geom_bar() +
+  labs(x = "Raça", 
+       y = "Frequência", 
+       title  = "Participante segundo a raça")
+```
+Colorir de outra cor
+
+```{r}
+ggplot(Marriage, aes(x = race)) + 
+  geom_bar(fill = "cornflowerblue") +
+  labs(x = "Raça", 
+       y = "Frequência", 
+       title = "Participantes por  raça") 
+
+```
+Uma variavel com muitos labels
+
+```{r}
+ggplot(Marriage, aes(x = officialTitle)) + 
+  geom_bar() +
+  labs(x = "Titulo",
+       y = "Frequência",
+       title = "Casamento por título")
+```
+
+```{r}
+Marriage %>% 
+  count(officialTitle)
+```
+
+
+```{r}
+ggplot(Marriage, aes(x = officialTitle)) + 
+  geom_bar() +
+  labs(x = "Titulo",
+       y = "Frequência",
+       title = "Casamento por título") +
+  coord_flip()
+```
+## 2. Quantitativa
+
+### 2.1 Histograma
+
+```{r}
+library(ggplot2)
+
+ggplot(Marriage, aes(x = age)) +
+  geom_histogram() + 
+  labs(title = "Participantes por idade",
+       x = "Idade") 
+```
+
+```{r}
+ggplot(Marriage, aes(x = age)) +
+  geom_histogram(fill = "cornflowerblue", 
+                 color = "white", 
+                 bins = 30) + 
+  labs(title="Participantes por idade", 
+       subtitle = "número de bins = 20",
+       x = "Idade",
+       y= "casos")
+```
+
+
+
+```{r}
+library(scales) # para alterar o eixo y para percentual
+ggplot(Marriage, 
+       aes(x = age, 
+           y= ..count.. / sum(..count..))) +
+  geom_histogram(fill = "cornflowerblue", 
+                 color = "white", 
+                 binwidth = 20) + 
+  labs(title="Participantes por idade", 
+       y = "Percentual",
+       x = "idade") +
+  scale_y_continuous(labels = percent) 
+```
+
+### 2.2 Dotplot ( até 150 casos)
+
+```{r}
+ggplot(Marriage, aes(x = age)) +
+  geom_dotplot() + 
+  labs(title = "Participantes por idade",
+       y = "Proporção",
+       x = "Idade")
+```
+
+
+
+```{r}
+ggplot(Marriage, aes(x = age)) +
+  geom_dotplot(fill = "gold", 
+               color = "black") + 
+  labs(title = "Participantes por idade",
+       y = "Proporção",
+       x = "Idade")
+```
+
+
+

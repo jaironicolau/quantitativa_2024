@@ -1,0 +1,61 @@
+---
+title: "Meidas de tendência central e dispersão"
+author: "Jairo Nicolau"
+date: "01/09/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(gapminder)
+
+View(gapminder)
+```
+
+Média e mediana
+
+```{r}
+gapminder %>%
+  filter(year==2007) %>% 
+  group_by(continent) %>%
+  summarize(mediana_lifeExp = median (lifeExp), 
+            media_lifeExp = mean (lifeExp)) %>% 
+  arrange(desc(mediana_lifeExp)) 
+
+```
+
+
+Sumário de 5 Números
+
+
+```{r}
+library(mosaic) # Loads an additional library
+
+gapminder07 <- gapminder %>% 
+      filter(year==2007)  
+
+favstats(gapminder07$lifeExp);
+```
+
+
+```{r}
+gapminder07 %>% 
+  summarize( n = n(), 
+             Min = min(lifeExp),
+             Q1 = quantile(lifeExp, .25),
+             Avg = mean(lifeExp), 
+             Q3 = quantile(lifeExp, .75),
+             Max = max(lifeExp)
+             )
+```
+
+
+
+
+
+
+
