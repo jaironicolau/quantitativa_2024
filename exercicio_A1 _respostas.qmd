@@ -1,0 +1,186 @@
+---
+title: "Exercício de A1"
+format: html
+editor: visual
+---
+
+Com base no banco de dados do banco 'bairos_rio_csv' responda as questões.
+
+O objetivo é fixar o conhecimento sobre manipulação de dados, agrupamento, filtragem e transformação.
+
+Aqui estão as questões:
+
+### 0. **carregue os pacotes e o banco**
+
+```{r}
+
+library (tidyverse)
+library(readr)
+
+df <- read_csv("bancos_dados/bairros_rio.csv")
+
+```
+
+### 1. **Seleção de colunas**
+
+Selecione três colunas do banco
+
+```{r}
+
+df |> 
+  select(GPP, Dom, DomFav)
+```
+
+### 2. **Filtragem de dados**
+
+Filtre os bairros que possuem mais de 20% da população vivendo em favelas
+
+```{r}
+
+df |> 
+  filter(pct_favela > 0.50)
+```
+
+Algo te chama a atenção nessa lista de bairros?
+
+### 3. **Agrupamento e sumarização**
+
+Agrupe os dados pela coluna "GPP" e calcule a média e a mediana de "Pop2000" para cada região GPP.
+
+```{r}
+df |> 
+  group_by(GPP) |> 
+  summarise(mean(Pop2000),
+            median(Pop2000))
+```
+
+Alguma informação te chama a atenção?
+
+### 4. **Criação de uma nova variável**
+
+Crie uma nova coluna que represente o percentual da população feminina. selecione para mostrar apenas a nova variável e o nome do bairro
+
+```{r}
+
+df |> 
+  mutate(pct_feminina = (PopF / Pop2000) * 100) |> 
+  select(Bairro_IPP, pct_feminina) |> 
+   arrange(desc(pct_feminina))
+```
+
+Quais cinco bairros que tem a maior população feminina? Algo te chama a atenção nessa lista?
+
+### 5. **Filtragem condicional**
+
+Filtre os bairros onde a porcentagem de evangélicos é maior que 15% e onde a população masculina é maior que a feminina. Mostre apenas a o nome dos bairros
+
+```{r}
+
+df |> 
+  filter(pct_evangelico > 15, PopM > PopF) |> 
+  select(Bairro_IPP)
+
+```
+
+### 6. **Agrupamento e contagem**
+
+Agrupe os dados pela coluna "GPP" e conte quantos bairros pertencem a cada grupo.
+
+```{r}
+
+df |> 
+  group_by(GPP) |> 
+  summarize(qtd_bairros = n())
+
+```
+
+### 7. **Ordenamento dos dados**
+
+Ordene os dados de forma decrescente pelo valor de "RDom_Media" (renda domiciliar média). Ao lado do bairro , coloque somente a renda de cada um
+
+```{r}
+
+df |> 
+  select(Bairro_IPP, RDom_Media) |> 
+  arrange(desc(RDom_Media))
+
+```
+
+### 8. **Criação de novas colunas**
+
+Crie uma nova coluna que represente a densidade populacional, definida como a razão entre a população total de 2000 ("Pop2000") e o número de domicílios ("Dom"). Mostre apenas o nome do bairro e os valores da nova variável, ordenadas em ordem crescente
+
+```{r}
+df |> 
+  mutate(densidade_populacional = Pop2000 / Dom) |> 
+  select(Bairro_IPP, densidade_populacional) |> 
+  arrange (densidade_populacional)
+
+```
+
+Existe algo que te chama a atencao?
+
+### 9. **Agrupamento e sumarização condicional**
+
+Agrupe os dados pela coluna "RegAdmin" e calcule a proporção média de pessoas vivendo em favelas para cada região.
+
+```{r}
+df |> 
+  group_by(RegAdmin) |> 
+  summarize(media_pct_favela = mean(pct_favela, na.rm = TRUE))|> 
+  arrange(media_pct_favela)
+```
+
+Algo te chama a atenção?
+
+### 10. **Filtragem múltipla**
+
+Filtre os bairros que estão na região administrativa "Tijuca" e que possuem uma taxa de escolaridade média ("AEstu_Media") maior que 6.
+
+```{r}
+df |> 
+  filter(RegAdmin == "Tijuca", AEstu_Media > 6)
+
+```
+
+### 11. **Uso de `summarize()`**
+
+Calcule a população total dos bairros que têm mais de 30% de sua população vivendo em favelas.
+
+```{r}
+df |> 
+  filter(pct_favela > 0.3) |> 
+  summarize(populacao_total = sum(Pop2000, na.rm = TRUE))
+
+```
+
+### 12. **Filtragem por múltiplas condições**
+
+Filtre os bairros que têm mais de 15 mil domicílios e onde a porcentagem de evangélicos é maior que 20%. Mostre somente o nome do bairro, a região GPP e a população total desses bairros
+
+```{r}
+df |> 
+  filter(Dom > 15000, pct_evangelico > 25) |> 
+  select (Bairro_IPP, GPP, pct_evangelico, Pop2000)
+
+```
+
+Existel algo que te chame a atenção?
+
+### 13. **Resumo estatístico**
+
+Usando a função `summarize()`, calcule a média, mediana e o desvio padrão da população ("Pop2000") de cada região GPP.
+
+```{r}
+
+df |> 
+  group_by(GPP) |> 
+  summarize(
+    media_pop = mean(Pop2000, na.rm = TRUE),
+    mediana_pop = median(Pop2000, na.rm = TRUE),
+    desvio_padrao_pop = sd(Pop2000, na.rm = TRUE)
+  )
+
+```
+
+Existe algo que te chame a atenção ?
